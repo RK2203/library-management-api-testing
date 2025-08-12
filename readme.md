@@ -1,8 +1,27 @@
 # Library Management API Testing
 
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Tests](https://img.shields.io/badge/tests-17%2F23%20passing-yellow)
+![Postman](https://img.shields.io/badge/Postman-Collection-orange)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 A comprehensive API testing suite for the Library Management System's Room Service module using Postman with OAuth authentication.
 
-## 📋 Overview
+## � Table of Contents
+
+- [Overview](#-overview)
+- [API Endpoints Tested](#-api-endpoints-tested)
+- [Getting Started](#-getting-started)
+- [Test Results Summary](#-test-results-summary)
+- [Test Categories](#-test-categories)
+- [Performance Metrics](#-performance-metrics)
+- [Usage Instructions](#-usage-instructions)
+- [Test Scenarios](#-test-scenarios)
+- [Known Issues](#-known-issues)
+- [Continuous Integration](#-continuous-integration)
+- [Support](#-support)
+
+## �📋 Overview
 
 This project contains automated API tests for a Library Management System that manages hotel rooms. The testing suite covers CRUD operations with OAuth authentication and includes both positive and negative test scenarios.
 
@@ -41,6 +60,8 @@ accessToken: (auto-populated after token request)
 ```
 
 ### Test Credentials
+⚠️ **Security Notice**: The credentials provided are for testing purposes only. Never use production credentials in documentation.
+
 ```
 Username: user1
 Password: pass123
@@ -131,7 +152,28 @@ Library_Management_API_Testing/
 2. **Select your operating system**: The website should automatically detect your OS (Windows, Mac, or Linux)
 3. **Choose version**: Select the appropriate version:
    - **Windows**: Download `.exe` file
-   - **Mac
+   - **Mac**: Download `.dmg` file
+   - **Linux**: Download `.tar.gz` or use package manager
+
+#### 1.2 Install Postman
+1. **Windows**: 
+   - Run the downloaded `.exe` file
+   - Follow the installation wizard
+   - Launch Postman from Start Menu or Desktop shortcut
+
+2. **Mac**: 
+   - Open the downloaded `.dmg` file
+   - Drag Postman to Applications folder
+   - Launch from Applications or Spotlight
+
+3. **Linux**: 
+   - Extract the `.tar.gz` file
+   - Run the Postman executable
+   - Or install via Snap: `sudo snap install postman`
+
+#### 1.3 Create Account (Optional)
+- Sign up for a free Postman account to sync collections across devices
+- Or continue as guest for local usage only
 
 ### Step 2: Import the Collection
 1. **Open Postman** and click on **"Import"** button (top-left corner)
@@ -348,3 +390,19 @@ This collection can be integrated with:
 ## 📞 Support
 
 For issues or questions regarding the API testing suite, please refer to the project documentation or contact the development team.
+
+## 👥 Contributors
+
+- **RK2203** - Initial work and project creation
+- **Gyanesh Kumar Tiwari** - Contributor
+- **Harsh** - Contributor
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Postman team for the excellent API testing platform
+- OAuth community for authentication standards
+- Contributors and testers who help improve this project
