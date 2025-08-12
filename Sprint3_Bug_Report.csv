@@ -1,0 +1,82 @@
+Summary,Issue key,Issue id,Issue Type,Status,Project key,Project name,Project type,Project lead,Project lead id,Project description,Priority,Resolution,Assignee,Assignee Id,Reporter,Reporter Id,Creator,Creator Id,Created,Updated,Last Viewed,Resolved,Due date,Votes,Description,Environment,Original estimate,Remaining Estimate,Time Spent,Work Ratio,Σ Original Estimate,Σ Remaining Estimate,Σ Time Spent,Security Level,Custom field (Issue color),Custom field (Rank),Sprint,Custom field (Start date),Custom field (Story point estimate),Custom field (Team),Custom field (Vulnerability),Parent,Parent key,Parent summary,Status Category,Status Category Changed
+AddRoom works without authentication,AABB1TG-50,10205,Bug,In Progress,AABB1TG,AgileQADelivery- Anand B Batch 1 TTP1QESA2519-Group8,software,SHOAL KOLEY,712020:f24fa023-ae89-4bb7-a6b7-64090d09fae0,,Highest,,,,SHOAL KOLEY,712020:f24fa023-ae89-4bb7-a6b7-64090d09fae0,SHOAL KOLEY,712020:f24fa023-ae89-4bb7-a6b7-64090d09fae0,04-08-2025 14:44,04-08-2025 15:04,04-08-2025 14:45,,,0,"AddRoom API allows adding a room without authentication
+
+Steps to Reproduce:
+
+# Open Postman
+# Send a POST request to:
+[https://webapps.tekstac.com/HotelAPI/RoomService/addRoom|https://webapps.tekstac.com/HotelAPI/RoomService/addRoom]
+# Use x-www-form-urlencoded body:
+roomId=999
+hotelId=H2001
+roomType=SINGLE
+roomStatus=AVAILABLE
+roomPrice=2000
+# Do not include any Authorization header
+# Observe the response
+
+Expected Result:
+
+* API should return 401 Unauthorized or 403 Forbidden
+* Room should NOT be added without a valid access token
+
+Actual Result:
+
+* API returns 200 OK
+* Room is successfully added even without authentication
+
+Impact:
+
+* Security vulnerability: Unauthorized users can add rooms
+* Data integrity issue in Hotel Room Management",,,,,,,,,,,0|i000a7:,AABB1TG Sprint 3,,,,,10033,AABB1TG-2,Library Management ,In Progress,04-08-2025 14:51
+DeleteRoomById works without authentication,AABB1TG-49,10204,Bug,In Progress,AABB1TG,AgileQADelivery- Anand B Batch 1 TTP1QESA2519-Group8,software,SHOAL KOLEY,712020:f24fa023-ae89-4bb7-a6b7-64090d09fae0,,Highest,,,,SHOAL KOLEY,712020:f24fa023-ae89-4bb7-a6b7-64090d09fae0,SHOAL KOLEY,712020:f24fa023-ae89-4bb7-a6b7-64090d09fae0,04-08-2025 14:44,04-08-2025 15:04,04-08-2025 14:50,,,0,"DeleteRoomById API deletes rooms without authentication.
+
+Steps to Reproduce:
+
+# Open Postman
+# Send a DELETE request to:
+[https://webapps.tekstac.com/HotelAPI/RoomService/deleteRoomById/101|https://webapps.tekstac.com/HotelAPI/RoomService/deleteRoomById/101]
+# Do not include any Authorization header
+# Observe the response
+
+Expected Result:
+
+* API should return 401 Unauthorized or 403 Forbidden
+* Room should NOT be deleted without a valid access token
+
+Actual Result:
+
+* API returns 200 OK
+* Room is deleted successfully without authentication
+
+Impact:
+
+* Critical security flaw: Any user can delete hotel room records
+* Leads to data loss and system vulnerability",,,,,,,,,,,0|i0009z:,AABB1TG Sprint 3,,,,,10033,AABB1TG-2,Library Management ,In Progress,04-08-2025 14:51
+UpdateRoomPrice works without authentication,AABB1TG-48,10203,Bug,In Progress,AABB1TG,AgileQADelivery- Anand B Batch 1 TTP1QESA2519-Group8,software,SHOAL KOLEY,712020:f24fa023-ae89-4bb7-a6b7-64090d09fae0,,Highest,,,,SHOAL KOLEY,712020:f24fa023-ae89-4bb7-a6b7-64090d09fae0,SHOAL KOLEY,712020:f24fa023-ae89-4bb7-a6b7-64090d09fae0,04-08-2025 14:43,04-08-2025 15:40,04-08-2025 15:39,,,0,"UpdateRoomPrice API updates room prices without authentication.
+
+Steps to Reproduce:
+
+# Open Postman
+# Send a PUT request to:
+[https://webapps.tekstac.com/HotelAPI/RoomService/updateRoomPrice|https://webapps.tekstac.com/HotelAPI/RoomService/updateRoomPrice]
+# Body (x-www-form-urlencoded):
+roomId=301
+roomPrice=2500
+# Do not include any Authorization header
+# Observe the response
+
+Expected Result:
+
+* API should return 401 Unauthorized or 403 Forbidden
+* Room price should NOT be updated without a valid access token
+
+Actual Result:
+
+* API returns 200 OK
+* Room price is updated successfully without authentication
+
+Impact:
+
+* Security vulnerability: Anyone can update hotel room prices
+* Data integrity risk in Hotel Room Management system",,,,,,,,,,,0|i0009r:,AABB1TG Sprint 3,,,,,10033,AABB1TG-2,Library Management ,In Progress,04-08-2025 15:40

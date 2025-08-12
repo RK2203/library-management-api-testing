@@ -1,0 +1,354 @@
+{
+	"id": "ed1c29b0-2b9d-4a9e-8850-617e7b243248",
+	"name": "Library_Management_API_Testing",
+	"timestamp": "2025-08-04T07:13:43.842Z",
+	"collection_id": "34680122-ec8b2a66-2fab-46dd-b8e8-668742498980",
+	"folder_id": 0,
+	"environment_id": "34680122-79643979-a19b-4afa-a103-58550f10be15",
+	"totalPass": 17,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-08-04T07:13:42.360Z",
+	"totalFail": 6,
+	"results": [
+		{
+			"id": "bb19da2f-6fac-4698-be91-fe6144528bb0",
+			"name": "Login",
+			"url": "https://webapps.tekstac.com/OAuthRestApi/webapi/auth/login",
+			"time": 327,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				327
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "76e90654-aa33-4438-9029-843222676c13",
+			"name": "Get Access Token",
+			"url": "https://webapps.tekstac.com/OAuthRestApi/webapi/auth/token",
+			"time": 50,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				50
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "242d3a0d-4d63-4e8f-9a99-526e852d1a7c",
+			"name": "View Room List",
+			"url": "https://webapps.tekstac.com/HotelAPI/RoomService/viewRoomList",
+			"time": 43,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is JSON": true,
+				"Response contains room list": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response contains room list": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				43
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is JSON": true,
+					"Response contains room list": true
+				}
+			]
+		},
+		{
+			"id": "120aa8b5-0b81-42aa-962c-783e91b2a9ba",
+			"name": "View Room By ID",
+			"url": "https://webapps.tekstac.com/HotelAPI/RoomService/viewRoomById/101",
+			"time": 74,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is JSON": true,
+				"Room ID matches the requested ID": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Room ID matches the requested ID": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				74
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is JSON": true,
+					"Room ID matches the requested ID": true
+				}
+			]
+		},
+		{
+			"id": "7adc5591-8a46-44cb-a4f5-96941db36326",
+			"name": "View Room By Type",
+			"url": "https://webapps.tekstac.com/HotelAPI/RoomService/viewRoomByType?roomType=SINGLE",
+			"time": 43,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is JSON": true,
+				"All rooms are SINGLE type": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All rooms are SINGLE type": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				43
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is JSON": true,
+					"All rooms are SINGLE type": true
+				}
+			]
+		},
+		{
+			"id": "91852174-524b-4e35-9f0c-f1f012db8874",
+			"name": "Add Room",
+			"url": "https://webapps.tekstac.com/HotelAPI/RoomService/addRoom",
+			"time": 52,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Negative Test: Unauthorized request should not succeed": false,
+				"Negative Test: Response should indicate authentication issue": false,
+				"Negative Test: Room should not be added": true
+			},
+			"testPassFailCounts": {
+				"Negative Test: Unauthorized request should not succeed": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Negative Test: Response should indicate authentication issue": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Negative Test: Room should not be added": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				52
+			],
+			"allTests": [
+				{
+					"Negative Test: Unauthorized request should not succeed": false,
+					"Negative Test: Response should indicate authentication issue": false,
+					"Negative Test: Room should not be added": true
+				}
+			]
+		},
+		{
+			"id": "a93ab64e-d89b-4ec2-9eda-98ad7fb858fb",
+			"name": "Update Room Price",
+			"url": "https://webapps.tekstac.com/HotelAPI/RoomService/updateRoomPrice",
+			"time": 87,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Room ID exists in response": true,
+				"Updated price matches request": true,
+				"Room price is greater than 0": true,
+				"Room ID should be found in the response array": true,
+				"Negative Test: Unauthorized request should not succeed": false,
+				"Negative Test: Room should not be updated": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Room ID exists in response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Updated price matches request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Room price is greater than 0": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Room ID should be found in the response array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Negative Test: Unauthorized request should not succeed": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Negative Test: Room should not be updated": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				87
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Room ID exists in response": true,
+					"Updated price matches request": true,
+					"Room price is greater than 0": true,
+					"Room ID should be found in the response array": true,
+					"Negative Test: Unauthorized request should not succeed": false,
+					"Negative Test: Room should not be updated": false
+				}
+			]
+		},
+		{
+			"id": "60ef850e-aeb9-4573-b689-746abc009cd1",
+			"name": "Delete Room by ID",
+			"url": "https://webapps.tekstac.com/HotelAPI/RoomService/deleteRoomById/101",
+			"time": 45,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Deleted room should not exist in room list": true,
+				"Negative Test: Unauthorized delete should not succeed": false,
+				"Negative Test: Response should indicate authentication issue": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deleted room should not exist in room list": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Negative Test: Unauthorized delete should not succeed": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Negative Test: Response should indicate authentication issue": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				45
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Deleted room should not exist in room list": true,
+					"Negative Test: Unauthorized delete should not succeed": false,
+					"Negative Test: Response should indicate authentication issue": false
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 721,
+	"collection": {
+		"requests": [
+			{
+				"id": "bb19da2f-6fac-4698-be91-fe6144528bb0",
+				"method": "POST"
+			},
+			{
+				"id": "76e90654-aa33-4438-9029-843222676c13",
+				"method": "POST"
+			},
+			{
+				"id": "242d3a0d-4d63-4e8f-9a99-526e852d1a7c",
+				"method": "GET"
+			},
+			{
+				"id": "120aa8b5-0b81-42aa-962c-783e91b2a9ba",
+				"method": "GET"
+			},
+			{
+				"id": "7adc5591-8a46-44cb-a4f5-96941db36326",
+				"method": "GET"
+			},
+			{
+				"id": "91852174-524b-4e35-9f0c-f1f012db8874",
+				"method": "POST"
+			},
+			{
+				"id": "a93ab64e-d89b-4ec2-9eda-98ad7fb858fb",
+				"method": "PUT"
+			},
+			{
+				"id": "60ef850e-aeb9-4573-b689-746abc009cd1",
+				"method": "DELETE"
+			}
+		]
+	}
+}

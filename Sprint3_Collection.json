@@ -1,0 +1,549 @@
+{
+	"info": {
+		"_postman_id": "ec8b2a66-2fab-46dd-b8e8-668742498980",
+		"name": "Library_Management_API_Testing",
+		"description": "API Testing for Library Management (RoomService) with OAuth authentication.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34680122",
+		"_collection_link": "https://my-team-1816.postman.co/workspace/Test~d23c8898-0cd4-498c-b3d2-009a7bc72791/collection/34680122-ec8b2a66-2fab-46dd-b8e8-668742498980?action=share&source=collection_link&creator=34680122"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"console.log(response)\r",
+							"pm.environment.set(\"authCode\", response.auth_code);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "user1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "pass123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{authUrl}}/login",
+					"host": [
+						"{{authUrl}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Access Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"\r",
+							"console.log(response)\r",
+							"\r",
+							"pm.environment.set(\"accessToken\", response.access_token);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "auth_code",
+							"value": "{{authCode}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{authUrl}}/token",
+					"host": [
+						"{{authUrl}}"
+					],
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Room List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response contains room list\", function () {\r",
+							"    let data = pm.response.json();\r",
+							"    pm.expect(data.length).to.be.above(0);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"let response = pm.response.json();\r",
+							"console.log(response)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/viewRoomList",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"viewRoomList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Room By ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Room ID matches the requested ID\", function () {\r",
+							"    let data = pm.response.json();\r",
+							"    pm.expect(data.roomId).to.eql(parseInt(pm.environment.get(\"roomId\")));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/viewRoomById/{{roomId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"viewRoomById",
+						"{{roomId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Room By Type",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"All rooms are SINGLE type\", function () {\r",
+							"    let data = pm.response.json();\r",
+							"    data.forEach(room => pm.expect(room.roomType).to.eql(\"SINGLE\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/viewRoomByType?roomType={{roomType}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"viewRoomByType"
+					],
+					"query": [
+						{
+							"key": "roomType",
+							"value": "{{roomType}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Room",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Capture the status code\r",
+							"const statusCode = pm.response.code;\r",
+							"\r",
+							"pm.test(\"Negative Test: Unauthorized request should not succeed\", function () {\r",
+							"    pm.expect(statusCode).to.be.oneOf([401, 403]);  // Expected auth failure\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Negative Test: Response should indicate authentication issue\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include.oneOf([\"Unauthorized\", \"Forbidden\", \"Invalid token\"]);\r",
+							"});\r",
+							"\r",
+							"// Optional: Fail if room was still added (check for success message)\r",
+							"pm.test(\"Negative Test: Room should not be added\", function () {\r",
+							"    pm.expect(pm.response.text()).to.not.include(\"successfully\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "roomId",
+							"value": "302",
+							"type": "text"
+						},
+						{
+							"key": "hotelId",
+							"value": "H2001",
+							"type": "text"
+						},
+						{
+							"key": "roomType",
+							"value": "SINGLE",
+							"type": "text"
+						},
+						{
+							"key": "roomStatus",
+							"value": "AVAILABLE",
+							"type": "text"
+						},
+						{
+							"key": "roomPrice",
+							"value": "1200",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/addRoom",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"addRoom"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Room Price",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let rawBody = pm.request.body.toString();\r",
+							"\r",
+							"// Convert \"roomId=301&roomPrice=1500\" to an object\r",
+							"let requestData = {};\r",
+							"rawBody.split('&').forEach(pair => {\r",
+							"    let [key, value] = pair.split('=');\r",
+							"    requestData[key] = decodeURIComponent(value);\r",
+							"});\r",
+							"\r",
+							"// Convert values properly\r",
+							"let requestRoomId = Number(requestData.roomId);\r",
+							"let requestRoomPrice = Number(requestData.roomPrice);\r",
+							"\r",
+							"// Parse the API response\r",
+							"let response = pm.response.json();\r",
+							"\r",
+							"console.log(typeof requestRoomId);\r",
+							"console.log(typeof requestRoomPrice);\r",
+							"console.log(response);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let roomFound = false;\r",
+							"\r",
+							"response.forEach(room => {\r",
+							"    if (room.roomId === requestRoomId) {\r",
+							"        roomFound = true;\r",
+							"\r",
+							"        pm.test(\"Room ID exists in response\", function () {\r",
+							"            pm.expect(room.roomId).to.eql(requestRoomId);\r",
+							"        });\r",
+							"\r",
+							"        pm.test(\"Updated price matches request\", function () {\r",
+							"            pm.expect(room.roomPrice).to.eql(requestRoomPrice);\r",
+							"        });\r",
+							"\r",
+							"        pm.test(\"Room price is greater than 0\", function () {\r",
+							"            pm.expect(room.roomPrice).to.be.above(0);\r",
+							"        });\r",
+							"    }\r",
+							"});\r",
+							"let statusCode = pm.response.code;\r",
+							"pm.test(\"Room ID should be found in the response array\", function () {\r",
+							"    pm.expect(roomFound).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Negative Test: Unauthorized request should not succeed\", function () {\r",
+							"    pm.expect(statusCode).to.be.oneOf([401, 403]);\r",
+							"});\r",
+							"\r",
+							"let responseText = pm.response.text();\r",
+							"if (statusCode === 200) {\r",
+							"    pm.test(\"Negative Test: Room should not be updated\", function () {\r",
+							"        pm.expect(responseText).to.not.include(requestRoomPrice.toString());\r",
+							"    });\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "roomId",
+							"value": "301",
+							"type": "text"
+						},
+						{
+							"key": "roomPrice",
+							"value": "1500",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/updateRoomPrice",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"updateRoomPrice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Room by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"let deletedRoomId = 101; // 🔹 Change if you delete another room\r",
+							"let statusCode = pm.response.code;\r",
+							"\r",
+							"// ✅ 1. Status Code Check\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// ✅ 2. Ensure Deleted Room is not in the List\r",
+							"let roomStillExists = false;\r",
+							"\r",
+							"if (Array.isArray(response)) {\r",
+							"    response.forEach(room => {\r",
+							"        if (room.roomId === deletedRoomId) {\r",
+							"            roomStillExists = true;\r",
+							"        }\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Deleted room should not exist in room list\", function () {\r",
+							"        pm.expect(roomStillExists).to.be.false;\r",
+							"    });\r",
+							"} else if (response.message) {\r",
+							"    pm.test(\"Response confirms successful deletion\", function () {\r",
+							"        pm.expect(response.message.toLowerCase()).to.include(\"success\");\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"let responseText = pm.response.text();\r",
+							"\r",
+							"// ✅ 1. Unauthorized request should fail\r",
+							"pm.test(\"Negative Test: Unauthorized delete should not succeed\", function () {\r",
+							"    pm.expect(statusCode).to.be.oneOf([401, 403]);\r",
+							"});\r",
+							"\r",
+							"// ✅ 2. Response should indicate authentication issue\r",
+							"pm.test(\"Negative Test: Response should indicate authentication issue\", function () {\r",
+							"    pm.expect(responseText).to.include.oneOf([\"Unauthorized\", \"Forbidden\", \"Invalid token\"]);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/deleteRoomById/{{roomId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deleteRoomById",
+						"{{roomId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
